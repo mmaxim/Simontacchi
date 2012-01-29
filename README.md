@@ -54,10 +54,10 @@ console mode as well. Below is a list of what this means.
 * Clock Management
 * Analysis Mode
 * Book
-** Book Creation - The utility built in to Simontacchi that allows a user to build
+    * Book Creation - The utility built in to Simontacchi that allows a user to build
 their own custom book.
-** Book View - Allows a user to view the book moves at the current position.
-* Full implementation of the Winboard protocol.
+    * Book View - Allows a user to view the book moves at the current position.
+* Full implementation of the XBoard/Winboard protocol.
 
 The UCIController interfaces Simontacchi to UCI compatible GUIs. There are
 still some aspects of the UCI protocol not yet implemented, but for the most
