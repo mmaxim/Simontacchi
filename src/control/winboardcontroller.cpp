@@ -40,6 +40,7 @@ void WinboardController::init(ConfigFile* cfg) {
     m_thrsvc = ThreadService::getInstance(THREAD_SERVICE_WIN32);
 #else
     m_thrsvc = ThreadService::getInstance(THREAD_SERVICE_PTH);
+    m_thrsvc->setPlayer(&m_player);
 #endif
 
     //Get the log file
