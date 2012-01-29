@@ -388,6 +388,7 @@ bool WinboardController::proc_protover(const vector<string>& args) {
 	WRITEPIPE("feature ics=1\n");
 	WRITEPIPE("feature colors=0\n");
 	WRITEPIPE("feature san=1\n");
+    WRITEPIPE("feature sigint=0\n");
 	WRITEPIPE("feature done=1\n");
 	return true;
 }
