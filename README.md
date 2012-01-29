@@ -19,29 +19,29 @@ to post bugs/feature requests and discuss the engine.
 
 #Engine Features
 
-Aspiration Principle Variation Search (an optimized version of the traditional
-alpha-beta algorithm)
-Iterative Deepening
-Rotated Bitboard based move generation and evaluation
-Transposition Tables
-Always-Replace Main Table
-Pawn Evaluation Table
-Evaluation Cache
-Null-move forward pruning
-History and Killer Heuristics
-Lazy Evaluation
-Futility Pruning, Razoring
-Quiescence Search guided by the MVV/LVA heuristic with futility pruning
-Repetition Detection 
-Search Extensions (Check, Single Move, Recapture, Passed Pawn push (not yet
+* Aspiration Principle Variation Search (an optimized version of the traditional alpha-beta algorithm)
+* Iterative Deepening
+* Rotated Bitboard based move generation and evaluation
+* Transposition Tables
+* Always-Replace Main Table
+* Pawn Evaluation Table
+* Evaluation Cache
+* Null-move forward pruning
+* History and Killer Heuristics
+* Lazy Evaluation
+* Futility Pruning, Razoring
+* Quiescence Search guided by the MVV/LVA heuristic with futility pruning
+* Repetition Detection 
+* Search Extensions (Check, Single Move, Recapture, Passed Pawn push (not yet
 implemented))
-Static Evaluation
-Pawn Structure
-King Safety
-King Attack
-Piece Placement
-Castling Bonus
-Queen management in the opening
+* Static Evaluation
+** Pawn Structure
+** King Safety
+** King Attack
+** Piece Placement
+** Castling Bonus
+** Queen management in the opening
+
 The control portion of Simontacchi is what implements the protocol
 communicating with the main engine. There are two controllers, the
 WinboardController and the UCIController. The WinboardController is the layer
@@ -50,14 +50,15 @@ console mode as well. Below is a list of what this means.
 
 #WinboardController Features:
 
-Pondering Support (puts engine into infinite thought on ponder move)
-Clock Management
-Analysis Mode
-Book
-Book Creation - The utility built in to Simontacchi that allows a user to build
+* Pondering Support (puts engine into infinite thought on ponder move)
+* Clock Management
+* Analysis Mode
+* Book
+** Book Creation - The utility built in to Simontacchi that allows a user to build
 their own custom book.
-Book View - Allows a user to view the book moves at the current position.
-Full implementation of the Winboard protocol.
+** Book View - Allows a user to view the book moves at the current position.
+* Full implementation of the Winboard protocol.
+
 The UCIController interfaces Simontacchi to UCI compatible GUIs. There are
 still some aspects of the UCI protocol not yet implemented, but for the most
 part everything is there.
