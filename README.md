@@ -35,12 +35,12 @@ to post bugs/feature requests and discuss the engine.
 * Search Extensions (Check, Single Move, Recapture, Passed Pawn push (not yet
 implemented))
 * Static Evaluation
-** Pawn Structure
-** King Safety
-** King Attack
-** Piece Placement
-** Castling Bonus
-** Queen management in the opening
+    * Pawn Structure
+    * King Safety
+    * King Attack
+    * Piece Placement
+    * Castling Bonus
+    * Queen management in the opening
 
 The control portion of Simontacchi is what implements the protocol
 communicating with the main engine. There are two controllers, the
