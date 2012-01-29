@@ -236,9 +236,9 @@ void* wbc_move_thread(void* params);
 
 void WinboardController::start_move_thread() {
 
-	int** args = (int**) malloc(sizeof(int)*3);
+	size_t** args = (size_t**) malloc(sizeof(size_t)*3);
 
-	args[0] = (int*) this; args[1] = (int*) &m_board; args[2] = (int*) 0;
+	args[0] = (size_t*) this; args[1] = (size_t*) &m_board; args[2] = (size_t*) 0;
 	m_thinkthread = m_thrsvc->create((void*)wbc_move_thread,args);
 }
 

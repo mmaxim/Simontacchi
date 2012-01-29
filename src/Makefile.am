@@ -1,6 +1,6 @@
 AUTOMAKE_OPTIONS = subdir-objects
 
-AM_CPPFLAGS = -I$(srcdir)/engine -I$(srcdir)/control -I$(srcdir)/book -I$(srcdir)/utility
+AM_CPPFLAGS = -I$(srcdir)/engine -I$(srcdir)/control -I$(srcdir)/book -I$(srcdir)/utility 
 
 bin_PROGRAMS = simontacchi
 simontacchi_SOURCES = globals.cpp \

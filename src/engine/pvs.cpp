@@ -63,6 +63,7 @@ int Player::pvs(Board& board, GameTree* tree) {
 		nextlevel.m_depth = tree->m_depth-PLAYER_PLY_WIDTH-m_options[PLAYER_NULLDEPTH];
 		nextlevel.m_beta = -(tree->m_beta-1);
 		nextlevel.m_alpha = -tree->m_beta; nextlevel.m_nullmove = false; nextlevel.m_capsqr = -1;
+        nextlevel.m_lastmove = MOVE_EMPTY;
 		score = -pvs(board,&nextlevel);
 		board = sboard;
 		if (score >= tree->m_beta) {
@@ -263,6 +264,7 @@ bool Player::get_stored_info(Board& board, GameTree* tree, StoredPosInfo& spi, M
 		spi.m_type = TT_UPPER; spi.m_depth = tree->m_depth;
 		spi.m_check = board.check(); spi.m_nullmove = true; 
 		spi.m_move = MOVE_EMPTY;
+        spi.m_val = PLAYER_MATE_SCORE;
 
 	}
 

@@ -8,7 +8,7 @@ TTEntry* Player::m_transtable = NULL;
 //Lookup in the main transposition table for as much info as possible
 int Player::trans_lookup(Board& board, int depth, int alpha, int beta, StoredPosInfo& entry) {
 	
-	TTEntry* ent;
+	TTEntry* ent = NULL;
 
 	ent = trans_getentry(board,true);
 	if (m_options[PLAYER_TRANSENABLED] && ent != NULL) {
@@ -67,13 +67,15 @@ TTEntry* Player::trans_getentry(Board& board, bool lookup) {
 	index = oindex = board.hash() % m_options[PLAYER_TRANSSIZE];
 	
 	//No probing if we replace ourselves or the entry is empty
-	if ((!lookup && m_transtable[index].m_sig == BB_ZERO) || m_transtable[index].m_sig == board.get_signature())
+	if ((!lookup && m_transtable[index].m_sig == BB_ZERO) || 
+        m_transtable[index].m_sig == board.get_signature())
 		return &m_transtable[index];
 	else {
 		//Try to probe around the entry for a blank entry or same board
 		for (i = 0; i < PLAYER_LIN_DISTANCE; i++) {
 			index = (index + 1) % m_options[PLAYER_TRANSSIZE];
-			if ((!lookup && m_transtable[index].m_sig == BB_ZERO) || m_transtable[index].m_sig == board.get_signature())
+			if ((!lookup && m_transtable[index].m_sig == BB_ZERO) || 
+                m_transtable[index].m_sig == board.get_signature())
 				return &m_transtable[index];
 		}
 	}
