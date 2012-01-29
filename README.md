@@ -13,6 +13,11 @@ implements the search routine and all the features listed below. It is not
 responsible for things like clock management, pondering, or basic protocol
 requirements.
 
+Simontacchi has been tested to compile and run on Linux, OSX, and Windows. Some
+features (such as the "crafty" display manager mode) are only available under
+Windows. Current development is working to bring all features to the GNU/Linux
+world as well.
+
 #Engine Features
 
 * Aspiration Principle Variation Search (an optimized version of the traditional alpha-beta algorithm)
