@@ -13,10 +13,6 @@ implements the search routine and all the features listed below. It is not
 responsible for things like clock management, pondering, or basic protocol
 requirements.
 
-Simontacchi is completely open source. The Simontacchi area on SourceForge can
-be traveled to by clicking on the SourceForge banner on the left pane. Go there
-to post bugs/feature requests and discuss the engine.
-
 #Engine Features
 
 * Aspiration Principle Variation Search (an optimized version of the traditional alpha-beta algorithm)
