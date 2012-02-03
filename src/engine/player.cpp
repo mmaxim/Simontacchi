@@ -199,7 +199,8 @@ int Player::search(Board& sboard, move_t& move) {
     }
 
     // History Heuristic init
-    for (i = 0; i < 66; i++) for (j = 0; j < 66; j++) for (k = 0; k < 6; k++) m_histheur[i][j][k] = 0;
+    for (i = 0; i < 66; i++) for (j = 0; j < 66; j++) for (k = 0; k < 6; k++) 
+        m_histheur[i][j][k] = 0;
 
     // Reset killers
     for (j = 0; j < PLAYER_MATEDEPTH; j++) {
@@ -211,7 +212,8 @@ int Player::search(Board& sboard, move_t& move) {
     }
 
     // Iterative Deepening
-    m_tnodes = m_nodes = m_qnodes = m_tthits = m_ttcutoff = m_failhigh = m_faillow = m_nullcut = m_ttreplace = 0;
+    m_tnodes = m_nodes = m_qnodes = m_tthits = m_ttcutoff = m_failhigh 
+        = m_faillow = m_nullcut = m_ttreplace = 0;
     m_ttmove = m_draws = m_egtbhit = m_egtbprobe = 0;
     m_eval->reset_evalstats();
     i = m_options[PLAYER_IDSTART]; 
@@ -246,14 +248,16 @@ int Player::search(Board& sboard, move_t& move) {
                 tree.m_pv.m_length = 0; 
                 continue;
             }
-            alpha = score-m_options[PLAYER_ASP_WINDOW]; beta = score+m_options[PLAYER_ASP_WINDOW];
+            alpha = score-m_options[PLAYER_ASP_WINDOW]; beta = 
+                score+m_options[PLAYER_ASP_WINDOW];
         }
 
         //Timer abort
         if (m_earlyabort) {
             m_curiddepth -= PLAYER_PLY_WIDTH;
             if (m_options[PLAYER_DISPLAY] != DISPLAY_MANAGER_UCI) {
-                WRITEPIPE(string("STATUS: EARLY ABORT: USING PV FROM DEPTH: " + itos(i-1) + "\n").c_str());
+                WRITEPIPE(string("STATUS: EARLY ABORT: USING PV FROM DEPTH: " + 
+                                 itos(i-1) + "\n").c_str());
                 WRITEPIPE("\n");
             }
             break;
@@ -270,7 +274,8 @@ int Player::search(Board& sboard, move_t& move) {
 
         if (m_options[PLAYER_SHOWTHINKING]) {
             (DisplayManager::getInstance(m_options[PLAYER_DISPLAY]))->output_pv(
-            PLAYER_PLY_LOGICAL(m_curiddepth),bscore,int((getMS()-m_starttime)*100.0),m_tnodes,board,m_oldline,true);
+            PLAYER_PLY_LOGICAL(m_curiddepth),bscore,
+                int((getMS()-m_starttime)*100.0),m_tnodes,board,m_oldline,true);
         }
     }
 

@@ -44,7 +44,7 @@ void LegacyDisplayManager::output_pv(int depth, int score, int elapsed, int node
 	}
 	if (var.m_ht) str += "<TT>";
 
-	sprintf(pvstr,"%d %d %d %d\t%s\n",depth,score,elapsed,nodes,str.c_str());
+	snprintf(pvstr,2048,"%d %d %d %d\t%s\n",depth,score,elapsed,nodes,str.c_str());
 	WRITEPIPE(pvstr);
 
 }

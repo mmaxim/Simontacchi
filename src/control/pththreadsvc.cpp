@@ -3,7 +3,7 @@
 
 #include <pththreadsvc.h>
 
-PthThreadService::PthThreadService() : m_nextid(0) { }
+PthThreadService::PthThreadService() : m_nextid(0), m_joining(false)  { }
 
 typedef void* (*PTH_FUNCPTR)(void*); 
 
@@ -20,11 +20,14 @@ thr_id PthThreadService::create(void* func, void* args) {
 
 void PthThreadService::cancel(thr_id tid) {
     map<int,pthread_t>::iterator it;
+    if (m_joining) return;
     if (m_thrmap.end() != (it = m_thrmap.find(tid))) {
         pthread_t thr = it->second;
         m_player->move_now();
         pthread_cancel(thr);
+        m_joining = true;
         pthread_join(thr, NULL);
+        m_joining = false;
     }
 }     
 

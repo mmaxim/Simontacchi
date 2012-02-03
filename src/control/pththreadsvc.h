@@ -27,6 +27,7 @@ private:
 
     thr_id m_nextid;
     map<int, pthread_t> m_thrmap;
+    bool m_joining;
 };
 
 #endif
