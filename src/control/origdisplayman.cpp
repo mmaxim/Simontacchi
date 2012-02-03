@@ -17,7 +17,7 @@ void LegacyDisplayManager::output_excitement(int,int,Board&,const Variation&) {
 
 void LegacyDisplayManager::output_pv(int depth, int score, int elapsed, int nodes, Board& board, const Variation& var, bool real) {
 	
-	char pvstr[256];
+	char pvstr[2048];
 	string str="",pgn;
 	int i,movenum=1;
 	bool outnumber;
