@@ -15,7 +15,8 @@ void LegacyDisplayManager::output_excitement(int,int,Board&,const Variation&) {
 
 }
 
-void LegacyDisplayManager::output_pv(int depth, int score, int elapsed, int nodes, Board& board, const Variation& var, bool real) {
+void LegacyDisplayManager::output_pv(int depth, int score, int elapsed, int nodes, 
+                                     Board& board, const Variation& var, bool real) {
 	
 	char pvstr[2048];
 	string str="",pgn;
@@ -34,12 +35,25 @@ void LegacyDisplayManager::output_pv(int depth, int score, int elapsed, int node
 
 	sboard = board;
 	for (i = 0; i < var.m_length; i++) {
+        
+        MoveList moves, fmoves;
+        sboard.generate_moves(fmoves);
+        sboard.generate_check_filter(moves,fmoves);
+
 		if (outnumber) {
 			str += itos(++movenum) + ". ";
 		}
-		pgn = Notation::MoveToSAN(var.m_moves[i],sboard);
-		sboard.move(var.m_moves[i]);
-		str += pgn + " ";
+        if (moves.exists(var.m_moves[i])) {
+            pgn = Notation::MoveToSAN(var.m_moves[i],sboard);
+            sboard.move(var.m_moves[i]);
+            str += pgn + " ";
+        } else {
+            WRITEPIPE(string(string("PANIC: Invalid move in PV: ") + itos(var.m_moves[i]) 
+                             + " XB: " + Notation::MoveToXB(var.m_moves[i], sboard) + 
+                             " FEN: " + sboard.toFEN() + "\n").c_str());
+            str += "XXX???XXX ";
+            break;
+        }   
 		outnumber = !outnumber;
 	}
 	if (var.m_ht) str += "<TT>";
@@ -61,7 +75,8 @@ void LegacyDisplayManager::output_stats(const DisplayStats& stats) {
 	WRITEPIPE("\n");
 }
 
-void LegacyDisplayManager::output_moveconsider(int side, int depth, int elapsed, int movenumber, int movetotal,
+void LegacyDisplayManager::output_moveconsider(int side, int depth, int elapsed, 
+                                               int movenumber, int movetotal,
 											   int nodes, move_t move, Board& board) {
 
 

@@ -1,0 +1,6 @@
+*.o
+.deps
+.dirstamp
+Makefile
+autom4te.cache
+build

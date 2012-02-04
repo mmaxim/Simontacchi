@@ -312,8 +312,10 @@ void* wbc_move_thread(void* params) {
         WRITEPIPE("resign\n");
     else {
         //Ponder
-        if (m_controller->m_flags[WBC_FLAGS_PONDERENABLED] && m_controller->m_player.get_current_pv()->m_length > 1)
-            m_controller->start_ponder_thread(m_controller->m_player.get_current_pv()->m_moves[1]);
+        if (m_controller->m_flags[WBC_FLAGS_PONDERENABLED] && 
+            m_controller->m_player.get_current_pv()->m_length > 1)
+            m_controller->start_ponder_thread
+                (m_controller->m_player.get_current_pv()->m_moves[1]);
     }
 
     if (!gameover)
@@ -646,12 +648,14 @@ bool WinboardController::proc_analyze(const vector<string>& args) {
 
 bool WinboardController::proc_dot(const vector<string>& args) {
 
-    char buffer[256];
+    char buffer[2048];
 
     if (m_mode == WBC_MODE_ANALYZE) {
-        sprintf(buffer,"stat01: %d %d %d %d %d %s\n",m_player.get_elapsed(),m_player.get_nodes(),
-            m_player.get_ply(),m_player.get_rootnodes()-m_player.get_currentnode(),m_player.get_rootnodes(),
-            Notation::MoveToSAN(m_player.get_currentmove(),m_board).c_str());
+        snprintf(buffer, 2048, "stat01: %d %d %d %d %d %s\n",m_player.get_elapsed(),
+                 m_player.get_nodes(), m_player.get_ply(),
+                 m_player.get_rootnodes()-m_player.get_currentnode(),
+                 m_player.get_rootnodes(),
+                 Notation::MoveToSAN(m_player.get_currentmove(),m_board).c_str());
         WRITEPIPE(buffer);
     }
     return true;
