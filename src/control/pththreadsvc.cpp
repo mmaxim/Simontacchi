@@ -24,7 +24,10 @@ void PthThreadService::cancel(thr_id tid) {
     if (m_thrmap.end() != (it = m_thrmap.find(tid))) {
         pthread_t thr = it->second;
         m_player->move_now();
+        pthread_cancel(thr);
+        m_joining = true;
         pthread_join(thr, NULL);
+        m_joining = false;
     }
 }     
 
