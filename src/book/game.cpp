@@ -136,6 +136,10 @@ string Game::getResult() const {
 	return m_result;
 }
 
+bool Game::isBlank() const {
+    return (m_moves.size() == 0);
+}   
+
 void Game::replay_game() {
 
 	Board board;
@@ -169,7 +173,8 @@ void Game::parse_game(const string& game) {
 	for (i = 0; i < (int)moves.size(); i++) {
 
 		ntoken = moves[i];
-		if (ntoken == "1-0" || ntoken == "0-1" || ntoken == "1/2-1/2") {
+		if (ntoken == "1-0" || ntoken == "0-1" || ntoken == "1/2-1/2" ||
+            ntoken == "*") {
 			m_result = ntoken;
 			continue;
 		}
@@ -183,6 +188,8 @@ void Game::parse_game(const string& game) {
 		m_moves.push_back(move);
 		board.move(move);
 	}
+    if (m_moves.size() == 0)
+        cout << "WARNING: Blank game!" << endl;
 }
 
 string Game::filter_numbers(const string& game) {

@@ -30,6 +30,10 @@ void BookGenerator::create_book(const string& file, const string& outfile, int p
 			// Is game over?
 			if (dones[j])
 				continue;
+            
+            // Is blanks?
+            if (games[j].isBlank())
+                continue;
 
 			move = games[j].get_nextmove();
 			position = games[j].get_position().get_signature();

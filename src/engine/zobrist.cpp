@@ -3,7 +3,8 @@
 
 #include <board.h>
 
-bitboard Board::m_zobrist[6][2][64],Board::m_zobristturn[2],Board::m_zobristcastle[2][2],Board::m_zobristenpawn[65];
+bitboard Board::m_zobrist[6][2][64],Board::m_zobristturn[2],Board::m_zobristcastle[2][2],
+         Board::m_zobristenpawn[65];
 
 unsigned int Board::hash() {
 	return (unsigned int)m_zkey;
@@ -32,7 +33,8 @@ void Board::init_zobrist() {
 }
 
 bitboard Board::randbitboard() {
-	return (bitboard)rand()^((bitboard)rand() << 15)^((bitboard)rand() << 30)^((bitboard)rand() << 45)^((bitboard)rand() << 60);
+	return (bitboard)rand()^((bitboard)rand() << 15)^((bitboard)rand() << 30)^
+        ((bitboard)rand() << 45)^((bitboard)rand() << 60);
 }
 
 void Board::zobrist(bitboard& zkey, bitboard& pzkey) const {

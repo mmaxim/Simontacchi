@@ -41,6 +41,7 @@ public:
 	string getECO() const;
 	void setResult(const string&);
 	string getResult() const;
+    bool isBlank() const;
 
 private:
 

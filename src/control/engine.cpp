@@ -91,7 +91,7 @@ void Engine::init() {
 
 int Engine::main() {
     
-    char command[16384];
+    char command[163840];
     string strcmd,str,str2;
     int bytesread=0,i;
 
@@ -99,7 +99,7 @@ int Engine::main() {
     while (true) {
 //      _read(0,command+bytesread,1);
         READPIPE(command+bytesread,1);
-        if (command[bytesread] == '\n') {
+        if (command[bytesread] == '\n' || command[bytesread] == '\0') {
             command[bytesread]='\0';
             strcmd = string(command);
             
