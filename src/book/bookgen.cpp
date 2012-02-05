@@ -36,6 +36,14 @@ void BookGenerator::create_book(const string& file, const string& outfile, int p
                 continue;
 
 			move = games[j].get_nextmove();
+            if (!games[j].get_position().is_legal_move(move)) {
+                cout << "WARNING: Illegal move: fen: " <<
+                    games[j].get_position().toFEN() << " move: "
+                    << Notation::MoveToXB(move, games[j].get_position()) 
+                    << " skipping..." << endl;
+                continue;
+            }
+
 			position = games[j].get_position().get_signature();
 			//Retrieve Record for this position
 			if (m_bmap.find(position) == m_bmap.end()) {

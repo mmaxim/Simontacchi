@@ -168,6 +168,19 @@ bool Board::validate_move(move_t move) {
 	return false;
 }
 
+// Check legality of moves using move generation
+bool Board::is_legal_move(move_t move) {
+
+    MoveList fmoves;
+    MoveList moves;
+
+    generate_moves(fmoves);
+    generate_check_filter(moves, fmoves);
+    
+    return moves.exists(move);
+
+}
+
 // Get castles
 void Board::generate_castle_moves(MoveList& moves, int pos) {
 

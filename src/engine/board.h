@@ -146,7 +146,8 @@ public:
 	void generate_capture_moves(MoveList&);
 	void generate_check_filter(MoveList&,const MoveList&);
 	bool validate_move(move_t);
-
+    bool is_legal_move(move_t);
+        
 	//Debug
 	void verify_rotator(move_t);
 	void showbitboard(bitboard) const;
